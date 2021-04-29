@@ -9,18 +9,18 @@ const data = require("../../transactionData");
 const Transactions = () => {
   return (
     <React.Fragment>
-      {data.transactions.map((transaction) => {
-        return (
-          <Card className="expenses">
+      <Card className="expenses">
+        {data.transactions.map((transaction) => {
+          return (
             <TransactionItem
               className="expense-item"
               title={transaction.title}
               amount={transaction.amount}
               date={transaction.date}
             />
-          </Card>
-        );
-      })}
+          );
+        })}
+      </Card>
     </React.Fragment>
   );
 }
