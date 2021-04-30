@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import TransactionDate from "./TransactionDate";
 import Card from "../UI/Card";
@@ -6,23 +6,60 @@ import "./TransactionItem.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
-const handleClick = (e) => {
-  console.log(e.currentTarget);
-};
+const TransactionItem = (props) => {
+  const [transactionName, setTransactionName] = useState(props.title);
 
-const ExpenseItem = (props) => {
+  const handleClick = () => {
+   setisNewInputOpen(true);
+  };
+  
+  const handleSubmit = () => {
+    setisNewInputOpen(false);
+  }
+
+  const handleChange = (e) => {
+    setTransactionName(e.target.value);
+  };
+
+  const [isNewInputOpen, setisNewInputOpen] = useState(false);
+
   return (
-    <Card className="expense-item">
-      <TransactionDate date={props.date} />
-      <div className="expense-item__description">
-          <button onClick={(e) => handleClick(e)} className="btn">
+    <React.Fragment>
+      <Card className="expense-item">
+        <TransactionDate date={props.date} />
+        <div className="expense-item__description">
+          <h2>{transactionName}</h2>
+
+          {isNewInputOpen &&
+          // SINGLE LINE FORM
+          <React.Fragment>
+            <form className="form" onSubmit={handleSubmit}>
+              <div className="form-control">
+                <label htmlFor="firstName">Enter new transaction name: </label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  value={transactionName}
+                  onChange={(e) => handleChange(e)}
+                />
+                <button onClick={handleSubmit} >Change</button>
+              </div>
+            </form>
+          </React.Fragment>}
+
+          <button
+            onClick={handleClick}
+            className="transaction-btn"
+            value={props.title}
+          >
             <FontAwesomeIcon icon={faEdit} />
           </button>
-          <h2>{props.title}</h2>
-        <div className="expense-item__price">${props.amount}</div>
-      </div>
-    </Card>
+          <div className="expense-item__price">£{props.amount}</div>
+        </div>
+      </Card>
+    </React.Fragment>
   );
 };
 
-export default ExpenseItem;
+export default TransactionItem;

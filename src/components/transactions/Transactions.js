@@ -12,7 +12,8 @@ const Transactions = () => {
       <Card className="expenses">
         {data.transactions.map((transaction) => {
           return (
-            <TransactionItem
+            <TransactionItem 
+              key={transaction.id}
               className="expense-item"
               title={transaction.title}
               amount={transaction.amount}
