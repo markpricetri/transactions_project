@@ -20,7 +20,6 @@
 .expense-item h2 {
   color: #3a3a3a;
   font-size: 1rem;
-  flex: 1;
   margin: 0 1rem;
   color: white;
 }
@@ -29,10 +28,12 @@
   font-size: 1rem;
   font-weight: bold;
   color: white;
-  background-color: #40005d;
+  background-color: var(--color-button-background);
   border: 1px solid white;
   padding: 0.5rem;
-  border-radius: 12px;
+  border-radius: 6px;
+  width: 8rem;
+  text-align: right;
 }
 
 @media (min-width: 580px) {
@@ -56,5 +57,15 @@
 .transaction-btn {
   background: none;
   border: none;
-  color: rgb(42, 42, 42);
+  color: #1F1F1F;
+  flex-grow: 1;
+  text-align: right;
+}
+
+.transaction-change-btn {
+  background-color: var(--color-button-background);
+  border: 2px solid var(--color-button-background);
+  color: var(--color-card-background-feature);
+  flex-grow: 1;
+  text-align: left;
 }

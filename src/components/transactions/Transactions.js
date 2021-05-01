@@ -2,7 +2,7 @@ import React from "react";
 
 import TransactionItem from "./TransactionItem"
 import Card from "../UI/Card"
-import "./Transactions.css"
+import "./Transactions.scss"
 
 const data = require("../../transactionData");
 
@@ -16,7 +16,7 @@ const Transactions = () => {
               key={transaction.id}
               className="expense-item"
               title={transaction.title}
-              amount={transaction.amount}
+              amount={transaction.amount.toFixed(2)}
               date={transaction.date}
             />
           );

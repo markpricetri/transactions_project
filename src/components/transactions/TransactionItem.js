@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import TransactionDate from "./TransactionDate";
 import Card from "../UI/Card";
-import "./TransactionItem.css";
+import "./TransactionItem.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
@@ -30,23 +30,26 @@ const TransactionItem = (props) => {
         <div className="expense-item__description">
           <h2>{transactionName}</h2>
 
-          {isNewInputOpen &&
-          // SINGLE LINE FORM
-          <React.Fragment>
-            <form className="form" onSubmit={handleSubmit}>
-              <div className="form-control">
-                <label htmlFor="firstName">Enter new transaction name: </label>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  value={transactionName}
-                  onChange={(e) => handleChange(e)}
-                />
-                <button onClick={handleSubmit} >Change</button>
-              </div>
-            </form>
-          </React.Fragment>}
+          {isNewInputOpen && (
+            // SINGLE LINE FORM
+            <React.Fragment>
+              <form className="form" onSubmit={handleSubmit}>
+                <div className="form-control">
+                  <label htmlFor="firstName">
+                    Enter new transaction name:{" "}
+                  </label>
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    value={transactionName}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <button className="transaction-change-btn" onClick={handleSubmit}>Change</button>
+                </div>
+              </form>
+            </React.Fragment>
+          )}
 
           <button
             onClick={handleClick}

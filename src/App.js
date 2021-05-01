@@ -1,11 +1,15 @@
 import React from 'react'
+import NewTransaction from './components/transactions/new_transaction/NewTransaction';
 import Transactions from "./components/transactions/Transactions";
 
 function App() {
+  const addTransactionHandler = (transaction) => {
+    console.log(transaction);
+  }
+  
   return (
     <React.Fragment>
-      <h2>Let's get started!</h2>
-      <p>This is also visible.</p>
+      <NewTransaction onAddTransaction={addTransactionHandler}/>
       <Transactions />
     </React.Fragment>
   );
