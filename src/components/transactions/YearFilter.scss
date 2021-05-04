@@ -1,0 +1,23 @@
+.filter-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.filter-title {
+  height: 45px;
+  margin: 0 1rem;
+}
+
+.filter-title h4 {
+  color: var(--color-text-main);
+}
+
+.drop-down {
+  margin: 0 1rem;
+}
+
+.drop-down select {
+  border-radius: 5px;
+  font-size: 1rem;
+}
