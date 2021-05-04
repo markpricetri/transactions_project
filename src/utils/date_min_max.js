@@ -1,5 +1,7 @@
 const date = new Date();
-const threeMonthsFromNow = date.setMonth(date.getMonth() + 3);
-const threeMonthsAgo = date.setMonth(date.getMonth() - 3);
+const threeMonths = 7889238000;
+const threeMonthsFromNow = date.getTime() + threeMonths;
+
+const threeMonthsAgo = date.getTime() - threeMonths;
 
 export { threeMonthsAgo, threeMonthsFromNow };

@@ -22,6 +22,8 @@
   font-size: 1rem;
   margin: 0 1rem;
   color: white;
+  flex-grow: 1;
+
 }
 
 .expense-item__price {
@@ -46,6 +48,7 @@
 
   .expense-item__description h2 {
     font-size: 1.25rem;
+
   }
 
   .expense-item__price {
@@ -68,4 +71,8 @@
   color: var(--color-card-background-feature);
   flex-grow: 1;
   text-align: left;
+}
+
+.expense-title-change-form {
+  width: 40%;
 }

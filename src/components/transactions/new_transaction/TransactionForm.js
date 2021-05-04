@@ -13,12 +13,10 @@ const TransactionForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target)
-    if (newTransaction.newDate > threeMonthsAgo && newTransaction.newDate < threeMonthsFromNow) {
-      props.onSaveTransactionData(newTransaction);
-    } else {
-      console.log("Error: date cannot be more than 3 months from today's date.")
-    }
+    console.log(newTransaction.newDate);
+    console.log(newTransaction.newAmount);
+    console.log(newTransaction.newTitle);
+    props.onSaveTransactionData(newTransaction);
   };
   
   const handleChange = (e) => {
@@ -37,6 +35,7 @@ const TransactionForm = (props) => {
         }
       });
     } else {
+      console.log(e.target.value)
       setnewTransaction((prevState) => {
         return {
         ...prevState,

@@ -5,7 +5,9 @@ import './NewTransaction.scss'
 const NewTransaction = (props) => {
   const saveTransactionDataHandler = (newTransactionData) => {
     const transactionData = {
-      ...newTransactionData,
+      date: newTransactionData.newDate,
+      amount: newTransactionData.newAmount,
+      title: newTransactionData.newTitle,
       id: new Date().getTime().toString()
     }
     props.onAddTransaction(transactionData);

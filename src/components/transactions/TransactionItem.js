@@ -30,26 +30,28 @@ const TransactionItem = (props) => {
         <div className="expense-item__description">
           <h2>{transactionName}</h2>
 
-          {isNewInputOpen && (
-            // SINGLE LINE FORM
-            <React.Fragment>
-              <form className="form" onSubmit={handleSubmit}>
-                <div className="form-control">
-                  <label htmlFor="firstName">
-                    Enter new transaction name:{" "}
-                  </label>
-                  <input
-                    type="text"
-                    id="title"
-                    name="title"
-                    value={transactionName}
-                    onChange={(e) => handleChange(e)}
-                  />
-                  <button className="transaction-change-btn" onClick={handleSubmit}>Change</button>
-                </div>
-              </form>
-            </React.Fragment>
-          )}
+          <div className="expense-title-change-form">
+            {isNewInputOpen && (
+              // SINGLE LINE FORM
+              <React.Fragment>
+                <form className="form newTitleForm" onSubmit={handleSubmit}>
+                  <div className="form-control">
+                    <label htmlFor="firstName">
+                      Enter new transaction name:{" "}
+                    </label>
+                    <input
+                      type="text"
+                      id="title"
+                      name="title"
+                      value={transactionName}
+                      onChange={(e) => handleChange(e)}
+                    />
+                    <button className="transaction-change-btn" onClick={handleSubmit}>Change</button>
+                  </div>
+                </form>
+              </React.Fragment>
+            )}
+          </div>
 
           <button
             onClick={handleClick}
@@ -58,7 +60,7 @@ const TransactionItem = (props) => {
           >
             <FontAwesomeIcon icon={faEdit} />
           </button>
-          <div className="expense-item__price">£{props.amount}</div>
+          <div className="expense-item__price">£{parseFloat(props.amount).toFixed(2)}</div>
         </div>
       </Card>
     </React.Fragment>

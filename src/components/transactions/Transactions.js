@@ -1,22 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 
 import TransactionItem from "./TransactionItem"
+import NewTransaction from "./new_transaction/NewTransaction";
 import Card from "../UI/Card"
 import "./Transactions.scss"
 
 const data = require("../../transactionData");
 
 const Transactions = () => {
+  const [transactions, setTransactions] = useState(data.transactions);
+
+  const addTransactionHandler = (transaction) => {
+    setTransactions((prevTransactions) => {
+      return [transaction, ...prevTransactions];
+    });
+  };
+  
+
   return (
     <React.Fragment>
+      <NewTransaction onAddTransaction={addTransactionHandler} />
       <Card className="expenses">
-        {data.transactions.map((transaction) => {
+        {transactions.map((transaction) => {
           return (
-            <TransactionItem 
+            <TransactionItem
               key={transaction.id}
               className="expense-item"
               title={transaction.title}
-              amount={transaction.amount.toFixed(2)}
+              amount={transaction.amount}
               date={transaction.date}
             />
           );
