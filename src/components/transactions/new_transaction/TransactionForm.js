@@ -33,7 +33,7 @@ const TransactionForm = (props) => {
       setnewTransaction((prevState) => {
         return {
         ...prevState,
-        newAmount: e.target.value,
+        newAmount: +e.target.value,
         }
       });
     } else {
