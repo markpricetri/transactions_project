@@ -4,41 +4,35 @@ import TransactionItem from "./TransactionItem";
 import NewTransaction from "./new_transaction/NewTransaction";
 import YearFilter from "./YearFilter";
 import Card from "../UI/Card";
-import TransactionsChart from './TransactionsChart';
+import TransactionsChart, { refreshChart } from '../chart/TransactionsChart';
 import "./Transactions.scss";
-import getYear from "../../utils/get_year"
 const data = require("../../transactionData");
 
 const Transactions = (props) => {
   const [transactions, setTransactions] = useState(data.transactions);
 
-  const [filter, setFilter] = useState(2021)
-
-  const applyFilter = (year) => {
-    setFilter(year);
-  };
-
-  const filteredTransactions = transactions.filter((transaction) => getYear(transaction.date) === filter);
-
-  const resetTransactions = () => {
-    console.log(data.transactions)
-    setTransactions((prevState) => {
-      return [...prevState, data.transactions]
-    });
-  };
+  const [filter, setFilter] = useState(new Date().getFullYear())
 
   const addTransactionHandler = (transaction) => {
+    setFilter(transaction.date.getFullYear());
     setTransactions((prevTransactions) => {
       return [transaction, ...prevTransactions];
     });
   };
 
+  const applyFilter = (year) => {
+    setFilter(year);
+    refreshChart(filteredTransactions);
+  };
+
+  const filteredTransactions = transactions.filter((transaction) => new Date(transaction.date).getFullYear() === filter);
+
   return (
     <React.Fragment>
       <NewTransaction onAddTransaction={addTransactionHandler}/>
-      <TransactionsChart transactions={transactions}/>
+      <TransactionsChart transactions={filteredTransactions}/>
       <Card className="expenses">
-        <YearFilter onYearFilter={applyFilter} reset={resetTransactions}/>
+        <YearFilter onYearFilter={applyFilter}/>
         {filteredTransactions.length === 0 && 
           <p className="list-fallback">
             No transactions to display...

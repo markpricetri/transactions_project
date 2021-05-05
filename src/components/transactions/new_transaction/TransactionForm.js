@@ -7,41 +7,47 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 
 const TransactionForm = (props) => {
-  const [newTransaction, setnewTransaction] = useState({
-    newTitle: "",
-    newAmount: "",
-    newDate: "",
+  const [newTransaction, setNewTransaction] = useState({
+    id: 0,
+    title: "eg. Petrol",
+    amount: "40.00",
+    date: new Date().toISOString().slice(0, 10),
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(newTransaction.newDate);
-    console.log(newTransaction.newAmount);
-    console.log(newTransaction.newTitle);
+    setNewTransaction((prevState) => {
+      return {
+        id: new Date().getTime(),
+        title: newTransaction.title,
+        amount: parseInt(newTransaction.amount),
+        date: newTransaction.date,
+      };
+    })
     props.onSaveTransactionData(newTransaction);
   };
   
   const handleChange = (e) => {
     if (e.target.name === "title") {
-      setnewTransaction((prevState) => {
+      setNewTransaction((prevState) => {
         return {
         ...prevState,
-        newTitle: e.target.value
+        title: e.target.value
         }
       });
     } else if (e.target.name === "amount") {
-      setnewTransaction((prevState) => {
+      setNewTransaction((prevState) => {
         return {
         ...prevState,
-        newAmount: +e.target.value,
+        amount: e.target.value,
         }
       });
     } else {
       console.log(e.target.value)
-      setnewTransaction((prevState) => {
+      setNewTransaction((prevState) => {
         return {
         ...prevState,
-        newDate: e.target.value,
+        date: e.target.value,
         }
       });
     }
@@ -59,7 +65,7 @@ const TransactionForm = (props) => {
             <input
               type="text"
               name="title"
-              value={newTransaction.newTitle}
+              value={newTransaction.title}
               onChange={handleChange}
             />
           </div>
@@ -68,7 +74,7 @@ const TransactionForm = (props) => {
             <input
               type="number"
               name="amount"
-              value={newTransaction.newAmount}
+              value={newTransaction.amount}
               min="0.01"
               step="0.01"
               onChange={handleChange}
@@ -79,7 +85,7 @@ const TransactionForm = (props) => {
             <input
               type="date"
               name="date"
-              value={newTransaction.newDate}
+              value={newTransaction.date}
               min={threeMonthsAgo}
               max={threeMonthsFromNow}
               onChange={handleChange}

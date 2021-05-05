@@ -4,7 +4,7 @@ import TransactionDate from "./TransactionDate";
 import Card from "../UI/Card";
 import "./TransactionItem.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const TransactionItem = (props) => {
   const [transactionName, setTransactionName] = useState(props.title);
@@ -46,7 +46,7 @@ const TransactionItem = (props) => {
                       value={transactionName}
                       onChange={(e) => handleChange(e)}
                     />
-                    <button className="transaction-change-btn" onClick={handleSubmit}>Change</button>
+                    <button className="transaction-change-btn" onClick={handleSubmit}><FontAwesomeIcon icon={faCheck} /></button>
                   </div>
                 </form>
               </React.Fragment>

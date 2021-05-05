@@ -3,13 +3,14 @@ import './YearFilter.scss';
 
 const YearFilter = (props) => {
   const handleSubmit = (e) => {
-    console.log(e.target);
-    
+    e.preventDefault();
   };
 
   const handleChange = (e) => {
-    props.onYearFilter(e.target.value);
+    console.log(parseInt(e.target.value))
+    props.onYearFilter(parseInt(e.target.value));
   };
+
   return (
     <React.Fragment>
       <div className="filter-div">

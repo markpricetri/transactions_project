@@ -9,7 +9,7 @@
 .chart-bar__inner {
   height: 100%;
   width: 100%;
-  border: 1px solid #313131;
+  border: 1px solid var(--color-card-background-bottom);
   border-radius: 12px;
   background-color: var(--color-background);
   overflow: hidden;
@@ -19,12 +19,13 @@
 }
 
 .chart-bar__fill {
-  background-color: var(--color-card-background-feature);
+  background-color: var(--color-card-background-other);
   width: 100%;
   transition: all 0.3s ease-out;
 }
 
 .chart-bar__label {
+  color: var(--color-text-main);
   font-weight: bold;
   font-size: 0.5rem;
   text-align: center;

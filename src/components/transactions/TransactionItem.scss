@@ -67,12 +67,24 @@
 
 .transaction-change-btn {
   background-color: var(--color-button-background);
-  border: 2px solid var(--color-button-background);
-  color: var(--color-card-background-feature);
+  border: none;
+  border-radius: 5px;
+  color: var(--color-text-main);
   flex-grow: 1;
   text-align: left;
+  margin-left: 2px;
 }
 
 .expense-title-change-form {
   width: 40%;
+}
+
+.newTitleForm {
+  color: var(--color-text-main);
+  font-size: 0.8rem;
+}
+
+.newTitleForm input {
+  border-radius: 5px;
+  border: 1px solid #1F1F1F;
 }

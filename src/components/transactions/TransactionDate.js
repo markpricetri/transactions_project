@@ -5,9 +5,9 @@ import "./TransactionDate.scss";
 const TransactionDate = (props) => {
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];
 
-  const month = months[props.date.getMonth()];
-  const day = props.date.getDate();
-  const year = props.date.getFullYear()
+  const month = months[new Date(props.date).getMonth()];
+  const day = new Date(props.date).getDate();
+  const year = new Date(props.date).getFullYear()
 
   return (
     <div className="expense-date">

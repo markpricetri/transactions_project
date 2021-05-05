@@ -1,6 +1,6 @@
 .filter-div {
   display: flex;
-  justify-content: space-between;
+  justify-content:space-between;
   align-items: flex-end;
 }
 
@@ -11,6 +11,7 @@
 
 .filter-title h4 {
   color: var(--color-text-main);
+  font-weight:lighter;
 }
 
 .drop-down {
