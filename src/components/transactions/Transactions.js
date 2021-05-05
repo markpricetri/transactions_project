@@ -4,12 +4,12 @@ import TransactionItem from "./TransactionItem";
 import NewTransaction from "./new_transaction/NewTransaction";
 import YearFilter from "./YearFilter";
 import Card from "../UI/Card";
+import TransactionsChart from './TransactionsChart';
 import "./Transactions.scss";
 import getYear from "../../utils/get_year"
-
 const data = require("../../transactionData");
 
-const Transactions = () => {
+const Transactions = (props) => {
   const [transactions, setTransactions] = useState(data.transactions);
 
   const [filter, setFilter] = useState(2021)
@@ -18,7 +18,7 @@ const Transactions = () => {
     setFilter(year);
   };
 
-  const filteredTransactions = transactions.filter((transaction) => getYear(transaction.date) == filter);
+  const filteredTransactions = transactions.filter((transaction) => getYear(transaction.date) === filter);
 
   const resetTransactions = () => {
     console.log(data.transactions)
@@ -35,9 +35,14 @@ const Transactions = () => {
 
   return (
     <React.Fragment>
-      <NewTransaction onAddTransaction={addTransactionHandler} />
+      <NewTransaction onAddTransaction={addTransactionHandler}/>
+      <TransactionsChart transactions={transactions}/>
       <Card className="expenses">
         <YearFilter onYearFilter={applyFilter} reset={resetTransactions}/>
+        {filteredTransactions.length === 0 && 
+          <p className="list-fallback">
+            No transactions to display...
+          </p>}
         {filteredTransactions.map((transaction) => {
           return (
             <TransactionItem

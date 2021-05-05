@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import { threeMonthsAgo, threeMonthsFromNow } from "../../../utils/date_min_max"
 import "./TransactionForm.scss"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 
 const TransactionForm = (props) => {
@@ -48,6 +50,9 @@ const TransactionForm = (props) => {
   return (
     <React.Fragment>
       <form className="form" onSubmit={handleSubmit}>
+        <button id="exit-button" onClick={props.closeForm}>
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
         <div className="new-expense__controls">
           <div className="new-expense__control">
             <label htmlFor="title">Name</label>

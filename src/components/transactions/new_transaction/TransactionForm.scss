@@ -23,6 +23,13 @@
 }
 
 .new-expense__actions {
-  text-align: right;
+  height: 4rem;
+  margin-top: 9px;
+}
 
+#exit-button {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  padding: 10px;
 }
