@@ -22,6 +22,10 @@
   max-width: 100%;
 }
 
+input.invalid {
+  border-color: var(--color-date-card-text);
+}
+
 .new-expense__actions {
   height: 4rem;
   margin-top: 9px;

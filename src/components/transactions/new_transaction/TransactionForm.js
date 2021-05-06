@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { threeMonthsAgo, threeMonthsFromNow } from "../../../utils/date_min_max"
-import "./TransactionForm.scss"
+import {
+  threeMonthsAgo,
+  threeMonthsFromNow,
+} from "../../../utils/date_min_max";
+import "./TransactionForm.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-
 
 const TransactionForm = (props) => {
   const [newTransaction, setNewTransaction] = useState({
@@ -14,47 +16,59 @@ const TransactionForm = (props) => {
     date: new Date().toISOString().slice(0, 10),
   });
 
-  const [isValid, setIsVald] = useState(true);
+  let defaultValidity = {
+    title: true,
+    amount: true,
+    date: true,
+  };
+
+  const [isValid, setIsValid] = useState(defaultValidity);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!newTransaction.title || !newTransaction.amount || !newTransaction.date) {
-      setIsValid(false)
-      return;
+    for (let [key] of Object.entries(defaultValidity)) {
+      if (!newTransaction[`${key}`]) {
+        defaultValidity[key] = false;
+      }
     }
-    setNewTransaction((prevState) => {
-      return {
-        id: new Date().getTime(),
-        title: newTransaction.title,
-        amount: parseInt(newTransaction.amount),
-        date: newTransaction.date,
-      };
-    })
-    props.onSaveTransactionData(newTransaction);
+    setIsValid(defaultValidity);
+    if (Object.values(defaultValidity).includes(false)) {
+      return;
+    } else {
+      setNewTransaction(() => {
+        return {
+          id: new Date().getTime(),
+          title: newTransaction.title,
+          amount: parseInt(newTransaction.amount),
+          date: newTransaction.date,
+        };
+      });
+      props.onSaveTransactionData(newTransaction);
+    }
   };
-  
+
   const handleChange = (e) => {
     if (e.target.name === "title") {
       setNewTransaction((prevState) => {
         return {
-        ...prevState,
-        title: e.target.value
-        }
+          ...prevState,
+          title: e.target.value,
+        };
       });
     } else if (e.target.name === "amount") {
       setNewTransaction((prevState) => {
         return {
-        ...prevState,
-        amount: e.target.value,
-        }
+          ...prevState,
+          amount: e.target.value,
+        };
       });
     } else {
-      console.log(e.target.value)
+      console.log(e.target.value);
       setNewTransaction((prevState) => {
         return {
-        ...prevState,
-        date: e.target.value,
-        }
+          ...prevState,
+          date: e.target.value,
+        };
       });
     }
   };
@@ -69,6 +83,7 @@ const TransactionForm = (props) => {
           <div className="new-expense__control">
             <label htmlFor="title">Name</label>
             <input
+              className={`${!isValid.title ? "invalid" : ""}`}
               type="text"
               name="title"
               value={newTransaction.title}
@@ -78,6 +93,7 @@ const TransactionForm = (props) => {
           <div className="new-expense__control">
             <label htmlFor="amount">Amount</label>
             <input
+              className={`${!isValid.amount ? "invalid" : ""}`}
               type="number"
               name="amount"
               value={newTransaction.amount}
@@ -89,6 +105,7 @@ const TransactionForm = (props) => {
           <div className="new-expense__control">
             <label htmlFor="amount">Date</label>
             <input
+              className={`${!isValid.date ? "invalid" : ""}`}
               type="date"
               name="date"
               value={newTransaction.date}
