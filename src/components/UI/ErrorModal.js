@@ -18,7 +18,8 @@ const Modal = styled.div`
   z-index: 100;
   overflow: hidden;
   & > div.content {
-    padding: 2rem;
+    padding: 0.75rem;
+    padding-left: 2rem;
     background-color: var(--color-background);
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;

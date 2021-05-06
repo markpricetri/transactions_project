@@ -23,7 +23,11 @@ const NewTransaction = (props) => {
 
   return (
     <div className="new-expense">
-      {isFormOpen && <TransactionForm onSaveTransactionData={saveTransactionDataHandler} closeForm={closeForm}/>}
+      {isFormOpen && <TransactionForm 
+        onSaveTransactionData={saveTransactionDataHandler} 
+        closeForm={closeForm} 
+        error={props.error}
+      />}
       {!isFormOpen && <Button onClick={handleClick}>Add Transaction</Button>}
     </div>
   )

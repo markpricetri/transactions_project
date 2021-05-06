@@ -29,7 +29,7 @@ const Transactions = (props) => {
 
   return (
     <React.Fragment>
-      <NewTransaction onAddTransaction={addTransactionHandler}/>
+      <NewTransaction onAddTransaction={addTransactionHandler} error={props.error}/>
       <TransactionsChart transactions={filteredTransactions}/>
       <Card className="expenses">
         <YearFilter onYearFilter={applyFilter}/>

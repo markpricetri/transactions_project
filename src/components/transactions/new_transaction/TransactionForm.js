@@ -29,7 +29,8 @@ const TransactionForm = (props) => {
     }
     setIsValid(defaultValidity);
     if (Object.values(defaultValidity).includes(false)) {
-      return;
+      const invalidFields = Object.keys(defaultValidity).filter((key) => !defaultValidity[key]);
+      props.error(invalidFields);
     } else {
       setNewTransaction(() => {
         return {
@@ -59,7 +60,6 @@ const TransactionForm = (props) => {
         };
       });
     } else {
-      console.log(e.target.value);
       setNewTransaction((prevState) => {
         return {
           ...prevState,
