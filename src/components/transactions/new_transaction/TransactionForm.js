@@ -14,8 +14,14 @@ const TransactionForm = (props) => {
     date: new Date().toISOString().slice(0, 10),
   });
 
+  const [isValid, setIsVald] = useState(true);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!newTransaction.title || !newTransaction.amount || !newTransaction.date) {
+      setIsValid(false)
+      return;
+    }
     setNewTransaction((prevState) => {
       return {
         id: new Date().getTime(),
