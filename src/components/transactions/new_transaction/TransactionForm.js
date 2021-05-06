@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 
-import {
-  threeMonthsAgo,
-  threeMonthsFromNow,
-} from "../../../utils/date_min_max";
+import { threeMonthsAgo, threeMonthsFromNow} from "../../../utils/date_min_max";
 import "./TransactionForm.scss";
+import Button from '../../UI/Button';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
@@ -114,9 +112,9 @@ const TransactionForm = (props) => {
               onChange={handleChange}
             />
           </div>
-          <button className="new-expense__actions" type="submit">
+          <Button type="sumbit" onClick={handleSubmit}>
             Add Transaction
-          </button>
+          </Button>
         </div>
       </form>
     </React.Fragment>
