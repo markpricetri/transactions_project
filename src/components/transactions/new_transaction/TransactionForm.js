@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-
-import { threeMonthsAgo, threeMonthsFromNow} from "../../../utils/date_min_max";
 import "./TransactionForm.scss";
 import Button from '../../UI/Button';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -107,12 +105,10 @@ const TransactionForm = (props) => {
               type="date"
               name="date"
               value={newTransaction.date}
-              min={threeMonthsAgo}
-              max={threeMonthsFromNow}
               onChange={handleChange}
             />
           </div>
-          <Button type="sumbit" onClick={handleSubmit}>
+          <Button type="sumbit" onClick={handleSubmit} inForm={true}>
             Add Transaction
           </Button>
         </div>
