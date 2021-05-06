@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import TransactionForm from './TransactionForm';
+import Button from '../../UI/Button'
 import './NewTransaction.scss'
 
 const NewTransaction = (props) => {
@@ -22,8 +23,12 @@ const NewTransaction = (props) => {
 
   return (
     <div className="new-expense">
-      {isFormOpen && <TransactionForm onSaveTransactionData={saveTransactionDataHandler} closeForm={closeForm}/>}
-      {!isFormOpen && <button onClick={handleClick}>Add Transaction</button>}
+      {isFormOpen && <TransactionForm 
+        onSaveTransactionData={saveTransactionDataHandler} 
+        closeForm={closeForm} 
+        error={props.error}
+      />}
+      {!isFormOpen && <Button onClick={handleClick}>Add Transaction</Button>}
     </div>
   )
 };
