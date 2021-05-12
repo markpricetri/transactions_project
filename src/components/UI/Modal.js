@@ -23,6 +23,24 @@ const Modal = styled.div`
     background-color: var(--color-background);
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    & > form > div.form-control label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      display: block;
+      color: var(--color-text-secondary);
+    }
+    & > form > div.form-control input {
+      font: inherit;
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 20rem;
+      max-width: 100%;
+    }
+    & > #demo-text {
+      text-align: center;
+      color: var(--color-date-card-text);
+    }
   }
 
   @media (min-width: 768px) {

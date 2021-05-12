@@ -29,6 +29,7 @@ const TransactionForm = (props) => {
     }
     setIsValid(defaultValidity);
     if (Object.values(defaultValidity).includes(false)) {
+      // create an array of the field names that are empty, to pass to the error modal
       const invalidFields = Object.keys(defaultValidity).filter((key) => !defaultValidity[key]);
       props.error(invalidFields);
     } else {
