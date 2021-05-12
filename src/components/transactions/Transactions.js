@@ -10,7 +10,6 @@ const data = require("../../transactionData");
 
 const Transactions = (props) => {
   const [transactions, setTransactions] = useState(data.transactions);
-
   const [filter, setFilter] = useState(new Date().getFullYear())
 
   const addTransactionHandler = (transaction) => {

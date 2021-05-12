@@ -1,55 +1,37 @@
-import styled from 'styled-components';
+import React from 'react'
+import { Modal, ModalHeader, ModalActions } from "./Modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import Button from "./Button";
 
-const Backdrop = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.75);
-`;
+const ErrorModal = (props) => {
+  return (
+    <React.Fragment>
+      {props.error && (
+        <Modal>
+          <ModalHeader>
+            <h2>Not so fast!</h2>
+          </ModalHeader>
+          <div className="modal-content">
+            {props.error.map((item) => {
+              return (
+                <h4 key={props.error.indexOf(item) + 1}>
+                  <FontAwesomeIcon
+                    icon={faTimes}
+                    style={{ marginRight: "20px" }}
+                  />
+                  {item.replace(/^\w/, (c) => c.toUpperCase())} cannot be blank
+                </h4>
+              );
+            })}
+            <ModalActions>
+              <Button onClick={props.onClick}>Got it!</Button>
+            </ModalActions>
+          </div>
+        </Modal>
+      )}
+    </React.Fragment>
+  );
+};
 
-const Modal = styled.div`
-  position: fixed;
-  top: 30vh;
-  left: 10%;
-  width: 80%;
-  z-index: 100;
-  overflow: hidden;
-  & > div.content {
-    padding: 0.75rem;
-    padding-left: 2rem;
-    background-color: var(--color-background);
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-  }
-
-  @media (min-width: 768px) {
-    left: calc(50% - 20rem);
-    width: 40rem;
-  }
-`;
-
-const ModalHeader = styled.div`
-  background-color: var(--color-card-background-top);
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-  padding: 0.5rem;
-  & > h2 {
-    text-align: center;
-    margin: 0;
-    color: white;
-  }
-`;
-
-const ModalActions = styled.div`
-  padding: 0.25rem;
-  display: flex;
-  justify-content: flex-end;
-  /* & > button {
-    background-color: var(--color-button-background);
-  } */
-`;
-
-export { Backdrop, Modal, ModalActions, ModalHeader };
+export default ErrorModal;
