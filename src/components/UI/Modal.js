@@ -46,6 +46,15 @@ const Modal = styled.div`
   @media (min-width: 768px) {
     left: calc(50% - 20rem);
     width: 40rem;
+    & > div.modal-content {
+      margin-left: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    & > div.modal-content {
+      padding: 0.25rem;
+    }
   }
 `;
 
@@ -65,6 +74,10 @@ const ModalActions = styled.div`
   padding: 0.25rem;
   display: flex;
   justify-content: flex-end; 
+  @media (max-width: 500px) {
+    justify-content: center;
+  }
 `;
+
 
 export { Backdrop, Modal, ModalActions, ModalHeader };
