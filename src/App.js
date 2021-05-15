@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Transactions from "./components/transactions/Transactions";
 import BackdropOverlay from "./components/UI/BackdropOverlay";
-import AlertModal from "./components/UI/ErrorModal";
+import AlertModal from "./components/UI/AlertModal";
 
 function App() {
   const [isLoggedOut, setIsLoggedOut] = useState(true);
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const loginInformation = localStorage.getItem('isLoggedIn');
+
+    if (loginInformation === '1') {
+      setIsLoggedOut(false);
+    }
+  }, []);
   
   const errorHandler = (invalidFields) => {
     setError(invalidFields);
@@ -16,18 +24,16 @@ function App() {
     e.preventDefault();
     if (error) {
       if (error.includes("username") || error.includes("password")) {
+        // Allow user to input new credentials by setting error to false
         setError(false);
       } else {
-        setIsLoggedOut(false);
         setError(false);
-        console.log("no errors");
       }
     } else {
       setIsLoggedOut(false);
       setError(false);
     };
   };
-    // setError(false);
 
   return (
     <React.Fragment>
