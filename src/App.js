@@ -1,21 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 import Transactions from "./components/transactions/Transactions";
 import BackdropOverlay from "./components/UI/BackdropOverlay";
 import AlertModal from "./components/UI/AlertModal";
+import NavBar from "./components/UI/NavBar";
 
 function App() {
   const [isLoggedOut, setIsLoggedOut] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    const loginInformation = localStorage.getItem('isLoggedIn');
+    const loginInformation = localStorage.getItem("isLoggedIn");
 
-    if (loginInformation === '1') {
+    if (loginInformation === "LOGGED_IN") {
       setIsLoggedOut(false);
+    } else {
+      setIsLoggedOut(true);
     }
   }, []);
-  
+
+  const logOut = () => {
+    setIsLoggedOut(true);
+  };
+
   const errorHandler = (invalidFields) => {
     setError(invalidFields);
   };
@@ -27,12 +34,14 @@ function App() {
         // Allow user to input new credentials by setting error to false
         setError(false);
       } else {
+        localStorage.setItem("isLoggedIn", "LOGGED_IN");
         setError(false);
       }
     } else {
+      localStorage.setItem("isLoggedIn", "LOGGED_IN");
       setIsLoggedOut(false);
       setError(false);
-    };
+    }
   };
 
   return (
@@ -55,6 +64,7 @@ function App() {
         document.getElementById("overlay-root")
       )}
 
+      <NavBar logOut={logOut}></NavBar>
       <Transactions error={errorHandler} />
     </React.Fragment>
   );

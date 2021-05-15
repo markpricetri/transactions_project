@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef } from "react";
 import { Modal, ModalHeader, ModalActions } from "./Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -10,8 +10,12 @@ const AlertModal = (props) => {
 
   const login = (e) => {
     e.preventDefault();
-    let enteredName = usernameInputRef.current.value ? usernameInputRef.current.value.trim() : false
-    let enteredUserPassword = passwordInputRef.current.value ? passwordInputRef.current.value.trim() : false
+    let enteredName = usernameInputRef.current.value
+      ? usernameInputRef.current.value.trim()
+      : false;
+    let enteredUserPassword = passwordInputRef.current.value
+      ? passwordInputRef.current.value.trim()
+      : false;
 
     if (!enteredName && !enteredUserPassword) {
       console.log(enteredName);
@@ -23,10 +27,9 @@ const AlertModal = (props) => {
       console.log(enteredName);
       props.errorMessage(["password"]);
     } else {
-      console.log(enteredName);
       props.onClick(e);
-    };
-  }
+    }
+  };
 
   return (
     <React.Fragment>
